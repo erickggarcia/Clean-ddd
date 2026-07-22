@@ -7,3 +7,16 @@ Design dirigido à domínio
 - Domain Experts
     - Conversa
 - Linguagem Ubíqua
+
+- Usuário
+    - Cliente
+    - Fornecedor
+    - Atendente
+    - Barman
+
+- Agregados
+- Value Objects
+- Eventos de domínios
+- Subdomínios (Bounded Contexts)
+- Entidades
+- Casos de uso

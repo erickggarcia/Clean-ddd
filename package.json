@@ -1,0 +1,30 @@
+{
+  "name": "clean-ddd",
+  "version": "1.0.0",
+  "description": "Design dirigido à domínio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickggarcia/DDD-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/erickggarcia/DDD-nodejs/issues"
+  },
+  "homepage": "https://github.com/erickggarcia/DDD-nodejs#readme",
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "-": "^0.0.1-security.1",
+    "D": "^1.0.0",
+    "vitest": "^4.1.10"
+  }
+}
