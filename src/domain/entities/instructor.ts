@@ -1,9 +1,14 @@
-import { randomUUID } from "node:crypto";
-import { Entity } from "../../core/entities/entity.js";
+import { Entity } from "@/core/entities/entity.js";
+import type { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 
 interface InstructorProps { 
     name: string
 }
 
 class Instructor extends Entity<InstructorProps> {
+     static create(props: InstructorProps, id?: UniqueEntityId) {
+                const instructor = new Instructor(props, id)
+        
+                return instructor
+        }
 }
