@@ -8,7 +8,7 @@
  *  name: string;
  *  email: string;
  * }
- * 
+ *
  * Optional<Post, "id" | "email">
  * ```
  **/
