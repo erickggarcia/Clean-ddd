@@ -1,3 +1,17 @@
 {
-    "extends": ["@rocketseat/eslint-config/node"]
+    "extends": ["@rocketseat/eslint-config/node",
+        "plugin:vitest-globals/recommended"
+    ],
+    "rules": {
+        "prettier/prettier": ["error", { "singleQuote": false }],
+        "quotes": ["error", "double"],
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-useless-return": "off",
+        "no-useless-constructor": "off",
+        "semi":"off",
+        "@typescript-eslint/no-useless-constructor": "error"
+    },
+    "env": {
+        "vitest-globals/env": true
+    }
 }
