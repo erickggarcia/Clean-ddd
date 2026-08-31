@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/erickggarcia/DDD-nodejs#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^26.1.1",
     "eslint": "^8.57.1",
