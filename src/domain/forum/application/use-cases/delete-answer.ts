@@ -18,7 +18,7 @@ export class DeleteAnswerUseCase {
       throw new Error("Answer not found.");
     }
 
-    if (answer.authorId.toString() !== authorId.toString()) {
+    if (answer.authorId.toString() !== authorId) {
       throw new Error("not allowed.");
     }
 
