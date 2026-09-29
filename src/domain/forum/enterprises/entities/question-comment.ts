@@ -4,10 +4,7 @@ import type { Optional } from "@/core/types/optional.js";
 import { Comment, CommentProps } from "./comment.js";
 
 export interface QuestionCommentProps extends CommentProps {
-  authorId: UniqueEntityId;
-  content: string;
-  createdAt: Date;
-  updatedAt?: Date;
+  questionId: UniqueEntityId;
 }
 
 export class QuestionComment extends Comment<QuestionCommentProps> {
