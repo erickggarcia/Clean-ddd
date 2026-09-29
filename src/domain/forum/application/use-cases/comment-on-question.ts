@@ -1,5 +1,5 @@
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
-import { QuestionsCommentRepository } from "../repositories/questions-coment-repository.js";
+import { QuestionsCommentRepository } from "../repositories/questions-comment-repository.js";
 import { QuestionComment } from "../../enterprises/entities/question-comment.js";
 import { QuestionsRepository } from "../repositories/questions-repository.js";
 

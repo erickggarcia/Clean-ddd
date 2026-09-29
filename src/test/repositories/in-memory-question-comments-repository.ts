@@ -1,4 +1,4 @@
-import { QuestionsCommentRepository } from "@/domain/forum/application/repositories/questions-coment-repository.js";
+import { QuestionsCommentRepository } from "@/domain/forum/application/repositories/questions-comment-repository.js";
 import { QuestionComment } from "@/domain/forum/enterprises/entities/question-comment.js";
 
 export class InMemoryQuestionCommentsRepository implements QuestionsCommentRepository {
