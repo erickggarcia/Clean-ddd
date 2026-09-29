@@ -1,39 +1,18 @@
 import { Entity } from "@/core/entities/entity.js";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 import type { Optional } from "@/core/types/optional.js";
+import { Comment, CommentProps } from "./comment.js";
 
-export interface QuestionCommentProps {
+export interface QuestionCommentProps extends CommentProps {
   authorId: UniqueEntityId;
-  questionId: UniqueEntityId;
   content: string;
   createdAt: Date;
   updatedAt?: Date;
 }
 
-export class QuestionComment extends Entity<QuestionCommentProps> {
+export class QuestionComment extends Comment<QuestionCommentProps> {
   get authorId() {
     return this.props.authorId;
-  }
-
-  get content() {
-    return this.props.content;
-  }
-
-  set content(content: string) {
-    this.props.content = content;
-    this.touch();
-  }
-
-  get createdAt() {
-    return this.props.createdAt;
-  }
-
-  get updatedAt() {
-    return this.props.updatedAt;
-  }
-
-  private touch() {
-    this.props.updatedAt = new Date();
   }
 
   static create(
