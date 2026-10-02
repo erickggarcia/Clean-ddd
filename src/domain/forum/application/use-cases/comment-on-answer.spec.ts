@@ -1,34 +1,35 @@
 import { InMemoryAnswersRepository } from "@/test/repositories/in-memory-answers-repository.js";
 import { InMemoryAnswerCommentsRepository } from "@/test/repositories/in-memory-answer-comments-repository.js";
-import { CommentOnQuestionUseCase } from "./comment-on-question.js";
+import { CommentOnAnswerUseCase } from "./comment-on-answer.js";
 import { makeQuestion } from "@/test/factories/make-question.js";
+import { makeAnswer } from "@/test/factories/make-answer.js";
 
-let inMemoryQuestionsRepository: InMemoryAnswersRepository;
-let inMemoryQuestionCommentsRepository: InMemoryAnswerCommentsRepository;
-let sut: CommentOnQuestionUseCase;
+let inMemoryAnswersRepository: InMemoryAnswersRepository;
+let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
+let sut: CommentOnAnswerUseCase;
 
-describe("create question comment", () => {
+describe("create answer comment", () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryAnswersRepository();
-    inMemoryQuestionCommentsRepository = new InMemoryAnswerCommentsRepository();
-    sut = new CommentOnQuestionUseCase(
-      inMemoryQuestionCommentsRepository,
-      inMemoryQuestionsRepository,
+    inMemoryAnswersRepository = new InMemoryAnswersRepository();
+    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository();
+    sut = new CommentOnAnswerUseCase(
+      inMemoryAnswerCommentsRepository,
+      inMemoryAnswersRepository,
     );
   });
 
-  it("It should be able to create a question comment", async () => {
-    const question = makeQuestion();
-    await inMemoryQuestionsRepository.create(question);
+  it("It should be able to create an answer comment", async () => {
+    const answer = makeAnswer();
+    await inMemoryAnswersRepository.create(answer);
 
     await sut.execute({
-      authorId: question.authorId.toString(),
-      questionId: question.id.toString(),
-      content: "New question comment",
+      authorId: answer.authorId.toString(),
+      answerId: answer.id.toString(),
+      content: "New answer comment",
     });
 
-    expect(inMemoryQuestionCommentsRepository.items[0]?.content).toEqual(
-      "New question comment",
+    expect(inMemoryAnswerCommentsRepository.items[0]?.content).toEqual(
+      "New answer comment",
     );
   });
 });
