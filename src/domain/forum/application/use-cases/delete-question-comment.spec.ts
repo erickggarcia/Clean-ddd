@@ -2,6 +2,7 @@ import { InMemoryQuestionCommentsRepository } from "@/test/repositories/in-memor
 import { DeleteQuestionsCommentUseCase } from "./delete-question-comment.js";
 import { makeQuestionComment } from "@/test/factories/make-question-comment.js";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
+import { NotAllowedError } from "./errors/not-allowed-error.js";
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository;
 let sut: DeleteQuestionsCommentUseCase;
@@ -16,11 +17,13 @@ describe("question comment use case", () => {
   it("should be able to delete a question comment", async () => {
     const questionComment = makeQuestionComment();
     await inMemoryQuestionCommentsRepository.create(questionComment);
-    await sut.execute({
+
+    const result = await sut.execute({
       authorId: questionComment.authorId.toString(),
       questionCommentId: questionComment.id.toString(),
     });
 
+    expect(result.isRight()).toBe(true);
     expect(inMemoryQuestionCommentsRepository.items).toHaveLength(0);
   });
 
@@ -30,11 +33,12 @@ describe("question comment use case", () => {
     });
     await inMemoryQuestionCommentsRepository.create(questionComment);
 
-    expect(async () => {
-      await sut.execute({
-        authorId: "author-2",
-        questionCommentId: questionComment.id.toString(),
-      });
-    }).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      authorId: "author-2",
+      questionCommentId: questionComment.id.toString(),
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });

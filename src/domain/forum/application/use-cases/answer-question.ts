@@ -1,6 +1,7 @@
+import { Either, right } from "@/core/either.js";
 import { UniqueEntityId } from "../../../../core/entities/unique-entity-id.js";
 import { Answer } from "../../enterprises/entities/answer.js";
-import { AnswerRepository } from "../repositories/answers-repository.js";
+import { AnswersRepository } from "../repositories/answers-repository.js";
 
 interface AnswerQuestionUseCaseRequest {
   instructorId: string;
@@ -8,21 +9,28 @@ interface AnswerQuestionUseCaseRequest {
   content: string;
 }
 
+type AnswerQuestionUseCaseResponse = Either<
+  null,
+  {
+    answer: Answer;
+  }
+>;
+
 export class AnswerQuestionUseCase {
-  constructor(private readonly answerRepository: AnswerRepository) {}
+  constructor(private readonly answersRepository: AnswersRepository) {}
   async execute({
     instructorId,
     questionId,
     content,
-  }: AnswerQuestionUseCaseRequest) {
+  }: AnswerQuestionUseCaseRequest): Promise<AnswerQuestionUseCaseResponse> {
     const answer = Answer.create({
       content,
       authorId: new UniqueEntityId(instructorId),
       questionId: new UniqueEntityId(questionId),
     });
 
-    await this.answerRepository.create(answer);
+    await this.answersRepository.create(answer);
 
-    return { answer };
+    return right({ answer });
   }
 }

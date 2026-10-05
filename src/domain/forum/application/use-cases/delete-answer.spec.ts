@@ -2,6 +2,7 @@ import { InMemoryAnswersRepository } from "@/test/repositories/in-memory-answers
 import { DeleteAnswerUseCase } from "./delete-answer.js";
 import { makeAnswer } from "@/test/factories/make-answer.js";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
+import { NotAllowedError } from "./errors/not-allowed-error.js";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: DeleteAnswerUseCase;
@@ -23,8 +24,12 @@ describe("delete answer use case", () => {
 
     inMemoryAnswersRepository.create(newAnswer);
 
-    await sut.execute({ authorId: "author-1", answerId: "answer-1" });
+    const result = await sut.execute({
+      authorId: "author-1",
+      answerId: "answer-1",
+    });
 
+    expect(result.isRight()).toBe(true);
     expect(inMemoryAnswersRepository.items).toHaveLength(0);
   });
 
@@ -40,8 +45,13 @@ describe("delete answer use case", () => {
     inMemoryAnswersRepository.create(newAnswer);
 
     expect(inMemoryAnswersRepository.items).toHaveLength(1);
-    expect(() => {
-      return sut.execute({ authorId: "author-2", answerId: "answer-1" });
-    }).rejects.toBeInstanceOf(Error);
+
+    const result = await sut.execute({
+      authorId: "author-2",
+      answerId: "answer-1",
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });

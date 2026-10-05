@@ -2,6 +2,7 @@ import { makeAnswerComment } from "@/test/factories/make-answer-comment.js";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 import { DeleteAnswerCommentUseCase } from "./delete-answer-comment.js";
 import { InMemoryAnswerCommentsRepository } from "@/test/repositories/in-memory-answer-comments-repository.js";
+import { NotAllowedError } from "./errors/not-allowed-error.js";
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
 let sut: DeleteAnswerCommentUseCase;
@@ -15,11 +16,13 @@ describe("answer comment use case", () => {
   it("should be able to delete a answer comment", async () => {
     const answerComment = makeAnswerComment();
     await inMemoryAnswerCommentsRepository.create(answerComment);
-    await sut.execute({
+
+    const result = await sut.execute({
       authorId: answerComment.authorId.toString(),
       answerCommentId: answerComment.id.toString(),
     });
 
+    expect(result.isRight()).toBe(true);
     expect(inMemoryAnswerCommentsRepository.items).toHaveLength(0);
   });
 
@@ -29,11 +32,12 @@ describe("answer comment use case", () => {
     });
     await inMemoryAnswerCommentsRepository.create(answerComment);
 
-    expect(async () => {
-      await sut.execute({
-        authorId: "author-2",
-        answerCommentId: answerComment.id.toString(),
-      });
-    }).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      authorId: "author-2",
+      answerCommentId: answerComment.id.toString(),
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });

@@ -17,7 +17,11 @@ describe("find question by slug", () => {
     const newQuestion = makeQuestion({ title: "an example title" });
     inMemoryQuestionsRepository.create(newQuestion);
 
-    const { question } = await sut.execute({ slug: "an-example-title" });
-    await expect(question.title).toEqual("an example title");
+    const result = await sut.execute({ slug: "an-example-title" });
+
+    expect(result.isRight()).toBe(true);
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({ title: "an example title" }),
+    });
   });
 });
