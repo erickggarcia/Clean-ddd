@@ -1,9 +1,9 @@
 import { Entity } from "@/core/entities/entity.js";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 
-interface AnswerAttachmentProps {
-  answerId: string;
-  attachmentId: string;
+export interface AnswerAttachmentProps {
+  answerId: UniqueEntityId;
+  attachmentId: UniqueEntityId;
 }
 
 export class AnswerAttachment extends Entity<AnswerAttachmentProps> {

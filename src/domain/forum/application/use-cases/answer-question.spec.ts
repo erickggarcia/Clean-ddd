@@ -1,12 +1,18 @@
+import { InMemoryAnswerAttachmentsRepository } from "@/test/repositories/in-memory-answer-attachments-repository.js";
 import { AnswerQuestionUseCase } from "./answer-question.js";
 import { InMemoryAnswersRepository } from "@/test/repositories/in-memory-answers-repository.js";
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswerQuestionsRepository: InMemoryAnswersRepository;
 let sut: AnswerQuestionUseCase;
 
 describe("answer question", () => {
   beforeEach(() => {
-    inMemoryAnswerQuestionsRepository = new InMemoryAnswersRepository();
+    inMemoryAnswerAttachmentsRepository =
+      new InMemoryAnswerAttachmentsRepository();
+    inMemoryAnswerQuestionsRepository = new InMemoryAnswersRepository(
+      inMemoryAnswerAttachmentsRepository,
+    );
     sut = new AnswerQuestionUseCase(inMemoryAnswerQuestionsRepository);
   });
 

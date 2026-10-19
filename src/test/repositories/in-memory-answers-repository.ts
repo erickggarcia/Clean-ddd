@@ -1,8 +1,13 @@
 import { PaginationParams } from "@/core/repositories/pagination-params.js";
 import { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository.js";
 import { Answer } from "@/domain/forum/enterprises/entities/answer.js";
+import { InMemoryAnswerAttachmentsRepository } from "./in-memory-answer-attachments-repository.js";
 
 export class InMemoryAnswersRepository implements AnswersRepository {
+  constructor(
+    private readonly answerAttachmentsRepository: InMemoryAnswerAttachmentsRepository,
+  ) {}
+
   public items: Answer[] = [];
 
   async create(answer: Answer): Promise<void> {
@@ -46,5 +51,6 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     );
 
     this.items.splice(asnwerIndex, 1);
+    this.answerAttachmentsRepository.deleteManyByAnswerId(answer.id.toString());
   }
 }
