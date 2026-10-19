@@ -3,7 +3,6 @@ import { Slug } from "./value-objects/slug.js";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 import type { Optional } from "@/core/types/optional.js";
 import dayjs from "dayjs";
-import { QuestionAttachment } from "./question-attachment.js";
 import { QuestionAttachmentList } from "./question-attachment-list.js";
 
 export interface QuestionProps {

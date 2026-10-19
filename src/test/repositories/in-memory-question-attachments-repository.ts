@@ -12,4 +12,11 @@ export class InMemoryQuestionAttachmentsRepository implements QuestionsAttachmen
     });
     return questionAttachments;
   }
+
+  async deleteManyByQuestionId(questionId: string) {
+    const questionAttachments = this.items.filter((questionAttachment) => {
+      return questionAttachment.questionId.toString() !== questionId;
+    });
+    this.items = questionAttachments;
+  }
 }
