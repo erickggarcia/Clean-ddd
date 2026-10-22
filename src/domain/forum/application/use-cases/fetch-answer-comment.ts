@@ -1,5 +1,5 @@
 import { Either, right } from "@/core/either.js";
-import { AnswerComment } from "../../enterprises/entities/answer-comment.js";
+import { AnswerComment } from "../../enterprise/entities/answer-comment.js";
 import { AnswersCommentRepository } from "../repositories/answers-comment-repository.js";
 
 interface FetchAnswerCommentRequest {

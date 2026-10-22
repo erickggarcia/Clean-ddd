@@ -1,4 +1,4 @@
-import { AnswerAttachment } from "../../enterprises/entities/answer-attachment.js";
+import { AnswerAttachment } from "../../enterprise/entities/answer-attachment.js";
 
 export interface AnswerAttachmentsRepository {
   findManyByAnswerId(answerId: string): Promise<AnswerAttachment[]>;

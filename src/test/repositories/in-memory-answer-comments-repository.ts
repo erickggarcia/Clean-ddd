@@ -1,6 +1,6 @@
 import { PaginationParams } from "@/core/repositories/pagination-params.js";
 import { AnswersCommentRepository } from "@/domain/forum/application/repositories/answers-comment-repository.js";
-import { AnswerComment } from "@/domain/forum/enterprises/entities/answer-comment.js";
+import { AnswerComment } from "@/domain/forum/enterprise/entities/answer-comment.js";
 
 export class InMemoryAnswerCommentsRepository implements AnswersCommentRepository {
   public items: AnswerComment[] = [];

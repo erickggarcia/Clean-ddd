@@ -1,6 +1,6 @@
 import { PaginationParams } from "@/core/repositories/pagination-params.js";
 import { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository.js";
-import { Answer } from "@/domain/forum/enterprises/entities/answer.js";
+import { Answer } from "@/domain/forum/enterprise/entities/answer.js";
 import { InMemoryAnswerAttachmentsRepository } from "./in-memory-answer-attachments-repository.js";
 
 export class InMemoryAnswersRepository implements AnswersRepository {

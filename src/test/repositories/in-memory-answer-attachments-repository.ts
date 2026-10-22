@@ -1,5 +1,5 @@
 import { AnswerAttachmentsRepository } from "@/domain/forum/application/repositories/answer-attachments-repository.js";
-import { AnswerAttachment } from "@/domain/forum/enterprises/entities/answer-attachment.js";
+import { AnswerAttachment } from "@/domain/forum/enterprise/entities/answer-attachment.js";
 
 export class InMemoryAnswerAttachmentsRepository implements AnswerAttachmentsRepository {
   public items: AnswerAttachment[] = [];

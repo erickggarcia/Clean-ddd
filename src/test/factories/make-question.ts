@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 import {
   Question,
   QuestionProps,
-} from "@/domain/forum/enterprises/entities/question.js";
+} from "@/domain/forum/enterprise/entities/question.js";
 
 export function makeQuestion(
   overrides: Partial<QuestionProps> = {},

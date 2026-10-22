@@ -2,11 +2,11 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 import {
   Answer,
   AnswerProps,
-} from "@/domain/forum/enterprises/entities/answer.js";
+} from "@/domain/forum/enterprise/entities/answer.js";
 import { faker } from "@faker-js/faker";
 
 export function makeAnswer(
-  override: Partial<AnswerProps> = {},
+  overrides: Partial<AnswerProps> = {},
   id?: UniqueEntityId,
 ) {
   const answer = Answer.create(
@@ -14,7 +14,7 @@ export function makeAnswer(
       authorId: new UniqueEntityId(),
       questionId: new UniqueEntityId(),
       content: faker.lorem.paragraphs(),
-      ...override,
+      ...overrides,
     },
     id,
   );

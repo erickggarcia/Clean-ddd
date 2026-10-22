@@ -47,3 +47,25 @@ Design dirigido à domínio
 - Adicionar um novo anexo (create)
 - Remover o segundo anexo que tinha sido criado previamente (delete)
 - Editar um anexo existente (update)
+
+# Subdominios
+
+### Core: O que dá dinheiro
+#### Exemplos:
+
+    - Compra
+    - Catálogo
+    - Pagameto
+    - Entrega
+    - Faturamento
+
+### Suporting: Dá suporte para o core funcionar
+#### Exemplo:
+
+    - Estoque
+
+### Generic: Você precisa, mas não são tão importantes
+### Exemplos:
+- Notificação ao cliente
+- Promoções
+- Chat

@@ -1,5 +1,5 @@
 import { PaginationParams } from "@/core/repositories/pagination-params.js";
-import { Question } from "../../enterprises/entities/question.js";
+import { Question } from "../../enterprise/entities/question.js";
 
 export interface QuestionsRepository {
   findBySlug(slug: string): Promise<Question | null>;

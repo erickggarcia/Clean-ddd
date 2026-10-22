@@ -1,6 +1,6 @@
 import { PaginationParams } from "@/core/repositories/pagination-params.js";
 import { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository.js";
-import { Question } from "@/domain/forum/enterprises/entities/question.js";
+import { Question } from "@/domain/forum/enterprise/entities/question.js";
 import { InMemoryQuestionAttachmentsRepository } from "./in-memory-question-attachments-repository.js";
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {

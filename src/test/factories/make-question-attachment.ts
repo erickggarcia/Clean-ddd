@@ -2,7 +2,7 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id.js";
 import {
   QuestionAttachment,
   QuestionAttachmentProps,
-} from "@/domain/forum/enterprises/entities/question-attachment.js";
+} from "@/domain/forum/enterprise/entities/question-attachment.js";
 import { faker } from "@faker-js/faker";
 
 export function makeQuestionAttachment(
