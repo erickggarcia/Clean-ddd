@@ -2,6 +2,7 @@ import { PaginationParams } from "@/core/repositories/pagination-params.js";
 import { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository.js";
 import { Question } from "@/domain/forum/enterprise/entities/question.js";
 import { InMemoryQuestionAttachmentsRepository } from "./in-memory-question-attachments-repository.js";
+import { DomainEvents } from "@/core/events/domain-events.js";
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {
   constructor(
@@ -22,6 +23,8 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
   async create(question: Question): Promise<void> {
     this.items.push(question);
+
+    DomainEvents.dispatchEventsForAggregate(question.id);
   }
 
   async findById(id: string): Promise<Question | null> {
@@ -59,5 +62,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     if (questionIndex >= 0) {
       this.items[questionIndex] = question;
     }
+
+    DomainEvents.dispatchEventsForAggregate(question.id);
   }
 }
